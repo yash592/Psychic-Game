@@ -30,10 +30,16 @@ if (userguess === computerguess){
 
 
 else {
-	
+	guesses--;
 	losses++;
 } 
 
+if (guesses <= 0){
+	wins = 0;
+	losses = 0;
+	guesses = 9;
+	alert("Game Over!");
+}
 	
 
 var winscore = 	document.getElementById("win");
@@ -43,6 +49,9 @@ var losescore = document.getElementById("loss");
 losescore.textContent = "Losses: " + losses;
 
 var guesssofar = document.getElementById("guessfar");
-guesssofar.textContent = "Guesses so far: " + event.key;
+guesssofar.textContent = "Guesses so far: " + userguess;
+
+var guessleft = document.getElementById("guessleft");
+guessleft.textContent = "Guesses left: " + guesses;
 
 }
