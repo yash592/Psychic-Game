@@ -13,36 +13,56 @@
 var wins = 0;
 var losses = 0;
 var guesses = 9;
+var guess = [];
 var alphabets = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "x", "y", "z"];
+
+
+function generaterandomword () {
+computerguess = alphabets[Math.floor(Math.random()*alphabets.length)];
+}
+
+
+generaterandomword();
+
+
+function reset () {
+	guesses = 9;
+	generaterandomword();
+
+}
 
 document.onkeyup = function(event) {
 
 var userguess = event.key;
 console.log(userguess);
 
-var computerguess = alphabets[Math.floor(Math.random()*alphabets.length)];
-console.log(computerguess);
+
 
 if (userguess === computerguess){
    wins++;
    alert("You won brah!");
+   reset();
+   
 }
 
 
 else {
+	guess.push(userguess);
 	guesses--;
-	losses++;
+	
 } 
 
-if (guesses <= 0){
-	wins = 0;
-	losses = 0;
-	guesses = 9;
+if (guesses <= 0) {    
 	alert("Game Over!");
+	losses++;
+	reset();
+	
 }
+
+
 	
 
-var winscore = 	document.getElementById("win");
+var winscore = 	document.getElementById("win"); 
 winscore.textContent = "Wins: " + wins;
 
 var losescore = document.getElementById("loss");
@@ -55,3 +75,4 @@ var guessleft = document.getElementById("guessleft");
 guessleft.textContent = "Guesses left: " + guesses;
 
 }
+
